@@ -1,1 +1,14 @@
 https://github.com/asciidoctor/asciidoctorj/issues/661
+
+
+
+[plantuml, ./diagram, png]
+.Diagram Title
+....
+@startuml
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+@enduml

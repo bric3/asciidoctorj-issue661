@@ -1,3 +1,10 @@
+This project's goal was demonstrating the issue https://github.com/asciidoctor/asciidoctorj/issues/661.
+But it seems the project was mis-configured (inspired by https://github.com/asciidoctor/asciidoctor-gradle-examples/issues/15), very poor and outdated gradle example.
+
+The solution is to place the dependency in the asciidoctor configuration not in the classpath.
+
+
+```
 buildscript {
     repositories { jcenter() }
     dependencies {
@@ -12,26 +19,10 @@ ext {
 
 apply plugin: 'org.asciidoctor.convert'
 
-
 dependencies {
     asciidoctor "org.springframework.restdocs:spring-restdocs-asciidoctor:$springRestDocs"
     asciidoctor "org.asciidoctor:asciidoctorj-diagram:$asciidoctorj"
 }
 
-ext {
-    snippetsDir = file("src/main/snippets")
-}
-
-asciidoctor {
-    requires 'asciidoctor-diagram'
-    options doctype: 'book'
-    attributes = [
-            'snippets'          : snippetsDir,
-            'source-highlighter': 'coderay',
-            'encoding'          : 'utf-8',
-            'version'           : project.version
-    ]
-    sources {
-        include 'main.adoc'
-    }
-}
+//...
+```
